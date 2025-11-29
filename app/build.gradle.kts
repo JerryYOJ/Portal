@@ -177,7 +177,7 @@ android {
         getByName("main").jniLibs.srcDirs("libs")
     }
 
-    configureAppSigningConfigsForRelease(project)
+    //configureAppSigningConfigsForRelease(project)   We dont need signing
 }
 
 fun configureAppSigningConfigsForRelease(project: Project) {
