@@ -180,32 +180,6 @@ android {
     //configureAppSigningConfigsForRelease(project)   We dont need signing
 }
 
-fun configureAppSigningConfigsForRelease(project: Project) {
-    val keystorePath: String? = System.getenv("KEYSTORE_PATH")
-    if (keystorePath.isNullOrBlank()) {
-        return
-    }
-    project.configure<ApplicationExtension> {
-        signingConfigs {
-            create("release") {
-                storeFile = file(System.getenv("KEYSTORE_PATH"))
-                storePassword = System.getenv("KEYSTORE_PASSWORD")
-                keyAlias = System.getenv("KEY_ALIAS")
-                keyPassword = System.getenv("KEY_PASSWORD")
-                enableV2Signing = true
-            }
-        }
-        buildTypes {
-            release {
-                signingConfig = signingConfigs.findByName("release")
-            }
-            debug {
-                signingConfig = signingConfigs.findByName("release")
-            }
-        }
-    }
-}
-
 dependencies {
     implementation(project(":xposed"))
 
